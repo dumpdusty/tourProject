@@ -9,7 +9,7 @@ describe(`USER CREATE POSITIVE`, () => {
 
   beforeAll(async () => {
     testUser = userHelper.randomUser(faker.internet.userName(), faker.internet.email(), password, password )
-    res = await userHelper.createUser(testUser)
+    res = await userHelper.userSignup(testUser)
   })
   it('verify response status code', () => {
     expect(res.statusCode).toBe(201)
@@ -33,7 +33,7 @@ describe(`USER CREATE NEGATIVE`, ()=>{
   describe(`create user without name`, ()=>{
     beforeAll(async()=>{
       testUser = userHelper.randomUser('', faker.internet.email(), password, password)
-      res = await userHelper.createUser(testUser)
+      res = await userHelper.userSignup(testUser)
     })
 
     it('verify response status code', () =>{
@@ -49,7 +49,7 @@ describe(`USER CREATE NEGATIVE`, ()=>{
   describe(`create user without email`, ()=>{
     beforeAll(async()=>{
       testUser = userHelper.randomUser(faker.internet.userName(), '', password, password)
-      res = await userHelper.createUser(testUser)
+      res = await userHelper.userSignup(testUser)
     })
 
     it('verify response status code', () =>{
@@ -64,7 +64,7 @@ describe(`USER CREATE NEGATIVE`, ()=>{
   describe(`create user without password`, ()=>{
     beforeAll(async()=>{
       testUser = userHelper.randomUser(faker.internet.userName(), faker.internet.email(), '', password)
-      res = await userHelper.createUser(testUser)
+      res = await userHelper.userSignup(testUser)
     })
 
     it('verify response status code', () =>{
@@ -79,7 +79,7 @@ describe(`USER CREATE NEGATIVE`, ()=>{
   describe(`create user without password confirmation`, ()=>{
     beforeAll(async()=>{
       testUser = userHelper.randomUser(faker.internet.userName(), faker.internet.email(), password, '')
-      res = await userHelper.createUser(testUser)
+      res = await userHelper.userSignup(testUser)
     })
 
     it('verify response status code', () =>{
@@ -94,7 +94,7 @@ describe(`USER CREATE NEGATIVE`, ()=>{
   describe(`create user with different passwords`, ()=>{
     beforeAll(async()=>{
       testUser = userHelper.randomUser(faker.internet.userName(), faker.internet.email(), password, 'pass1234')
-      res = await userHelper.createUser(testUser)
+      res = await userHelper.userSignup(testUser)
     })
 
     it('verify response status code', () =>{
@@ -109,7 +109,7 @@ describe(`USER CREATE NEGATIVE`, ()=>{
   describe(`create user with empty data`, ()=>{
     beforeAll(async()=>{
       testUser = userHelper.randomUser('','','','')
-      res = await userHelper.createUser(testUser)
+      res = await userHelper.userSignup(testUser)
     })
 
     it('verify response status code', () =>{
