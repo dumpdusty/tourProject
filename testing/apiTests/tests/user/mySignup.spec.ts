@@ -1,8 +1,6 @@
-import * as supertest from 'supertest'
 import * as userHelper from '../../helpers/userHelper'
 import {faker} from '@faker-js/faker';
 
-const request = supertest('localhost:8001/api/v1')
 const password = 'Pirate666!'
 describe(`USER CREATE POSITIVE`, () => {
   let res: any, testUser: any;

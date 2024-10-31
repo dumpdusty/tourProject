@@ -1,8 +1,6 @@
 import { getUser } from '../../data/user';
 import * as userHelper from '../../helpers/userHelper';
-import * as supertest from 'supertest';
 
-const request = supertest('localhost:8001/api/v1');
 
 describe(`Authentication`, () => {
   let res: any;
