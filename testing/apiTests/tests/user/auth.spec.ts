@@ -7,8 +7,8 @@ describe(`Authentication`, () => {
   describe('POSITIVE', () => {
     const userImport = getUser();
     it(`verify status code`, async () => {
-      res = await userHelper.userSignup(userImport).expect(201);
-      const loginRes = await userHelper.userLogin(userImport.email, userImport.password).expect(200);
+      await userHelper.userSignup(userImport).expect(201);
+      res = await userHelper.userLogin(userImport.email, userImport.password).expect(200);
     });
   });
 
