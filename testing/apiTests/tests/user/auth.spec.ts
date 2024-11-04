@@ -1,23 +1,20 @@
-import { getUser } from '../../data/user';
+import { getUser, existingUser } from '../../data/user';
 import * as userHelper from '../../helpers/userHelper';
 
 
 describe(`Authentication`, () => {
   let res: any;
-  describe('POSITIVE', () => {
-    const userImport = getUser();
-    it(`verify status code`, async () => {
-      await userHelper.userSignup(userImport).expect(201);
-      res = await userHelper.userLogin(userImport.email, userImport.password).expect(200);
-    });
+  const userImport = getUser();
+  beforeAll(async () => {
+    await userHelper.userSignup(userImport).expect(201);
   });
 
-
   describe(`login with .then`, () => {
-    it(`to rename later`, async () => {
-      res = await userHelper.userLogin('jacksparrow@pirate.com', `Pirate666!`).then(response => {
-        expect(response.statusCode).toEqual(200)
-      });
+    it(`verify response statusCode`, async () => {
+      await userHelper.userLogin(userImport.email, userImport.password)
+        .then(response => {
+          expect(response.statusCode).toEqual(200);
+        });
     });
   });
 });

@@ -22,6 +22,14 @@ export function getUser() {
     passwordConfirm: fakerPassword,
   };
 }
+
+export const existingUser = ()=>{
+  return {
+    email: `jacksparrow@pirate.com`,
+    password: `Pirate666!`
+  }
+
+}
 export function createRandomUser() {
   return {
     username: faker.internet.userName(),
