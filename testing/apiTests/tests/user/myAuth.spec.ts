@@ -4,10 +4,13 @@ import * as userHelper from '../../helpers/userHelper';
 describe(`Authentication`, () => {
   let res: any;
   const userImport = getUser();
+
   beforeAll(async() => {
     await userHelper.userSignup(userImport).expect(201);
   })
+
   describe('POSITIVE', () => {
+
     beforeAll(async() => {
       res = await userHelper.userLogin(userImport.email, userImport.password).expect(200)
     })
@@ -39,7 +42,9 @@ describe(`Authentication`, () => {
 
   describe('NEGATIVE', ()=>{
     const userImport = getUser();
+
     describe('login with empty email', () =>{
+
       beforeAll(async()=>{
         res = await userHelper.userLogin('', userImport.password).expect(400)
       })
@@ -54,6 +59,7 @@ describe(`Authentication`, () => {
     })
 
     describe(`login with empty password`, ()=>{
+
       beforeAll(async()=>{
         res = await userHelper.userLogin(userImport.email, '').expect(400)
       })
@@ -68,6 +74,7 @@ describe(`Authentication`, () => {
     })
 
     describe(`login with incorrect email`, ()=> {
+
       beforeAll(async()=>{
         res = await userHelper.userLogin('incorrect@email.com', userImport.password).expect(401)
       })
@@ -82,6 +89,7 @@ describe(`Authentication`, () => {
     })
 
     describe(`login with incorrect password`, ()=> {
+
       beforeAll(async()=>{
         res = await userHelper.userLogin(userImport.email, `incorrect123`).expect(401)
       })
@@ -96,6 +104,7 @@ describe(`Authentication`, () => {
     })
 
     describe(`login with mixed credentials`, ()=>{
+
       beforeAll(async()=>{
         res = await userHelper.userLogin(userImport.password, userImport.email).expect(401)
       })
@@ -110,16 +119,3 @@ describe(`Authentication`, () => {
     })
   })
 });
-
-
-// describe(`login with .then`, () => {
-//   let thenRes: any;
-//   it(`to rename later`, async () => {
-//     thenRes = await userHelper.userLogin('jacksparrow@pirate.com', `Pirate666!`)
-//       .then(response => {
-//         expect(response.statusCode).toEqual(200);
-//         expect(response.body.status).toEqual('success')
-//         console.log(response.body);
-//     });
-//   });
-// });

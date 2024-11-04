@@ -1,4 +1,4 @@
-import { getUser, existingUser } from '../../data/user';
+import { getUser } from '../../data/user';
 import * as userHelper from '../../helpers/userHelper';
 
 
@@ -14,6 +14,7 @@ describe(`Authentication`, () => {
       await userHelper.userLogin(userImport.email, userImport.password)
         .then(response => {
           expect(response.statusCode).toEqual(200);
+          expect(response.body.status).toEqual('success')
         });
     });
   });
