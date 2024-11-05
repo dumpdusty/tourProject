@@ -55,6 +55,10 @@ export function weirdUserDelete(cookie: string): Promise<any>{
   })
 }
 
-export const userDelete = (token: string) => {
-  return request.delete(`/users/deleteMe`).set(`Authorization`,token)
+export const userDelete = (cookie: string) => {
+  return request.delete(`/users/deleteMe`).set(`Cookie`,cookie)
+}
+
+export const userDeleteWithAuthHeader = (token: string) => {
+  return request.delete(`/users/deleteMe`).set(`Auth`,token)
 }

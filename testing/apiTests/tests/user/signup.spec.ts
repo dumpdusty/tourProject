@@ -56,7 +56,6 @@ describe(`USER SIGNUP`, () => {
         .expect(201)
         .end(function (err, res) {
           if (err) return done(err)
-          console.log(res.body)
           expect(res.body.data.user.name).toBe(oneMoreUser.name)
           expect(res.body.data.user.email).toBe(oneMoreUser.email.toLowerCase())
           expect(res.body.status).toBe('success')
