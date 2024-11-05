@@ -42,3 +42,19 @@ export function weirdUserLogin(data: object): Promise<any>{
 export const userLogin = (email: string, password: string) => {
   return request.post(`/users/login`).send({email, password})
 }
+
+export function weirdUserDelete(cookie: string): Promise<any>{
+  return new Promise((resolve, reject) => {
+    request
+      .delete(`/users/deleteMe`)
+      .set(`Cookie`, cookie)
+      .end((err, res)=>{
+        if(err) return reject(err)
+        else resolve(res)
+      })
+  })
+}
+
+export const userDelete = (token: string) => {
+  return request.delete(`/users/deleteMe`).set(`Authorization`,token)
+}

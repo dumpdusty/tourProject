@@ -108,9 +108,9 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 exports.deleteMe = catchAsync(async (req, res, next) => {
   await User.deleteOne({ _id: req.user.id });
 
-  res.status(204).json({
+  res.status(200).json({
     status: 'success',
-    data: null,
+    message: `User deleted successfully`,
   });
 });
 
